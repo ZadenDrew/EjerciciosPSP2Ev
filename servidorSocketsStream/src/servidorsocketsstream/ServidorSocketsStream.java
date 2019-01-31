@@ -24,7 +24,7 @@ public class ServidorSocketsStream {
 
             System.out.println("Realizando el bind");
 
-            InetSocketAddress addr = new InetSocketAddress("locahost", 5555);
+            InetSocketAddress addr = new InetSocketAddress("locahost", 6666);
             serverSocket.bind(addr);
 
             System.out.println("Aceptando conexiones");
@@ -36,10 +36,15 @@ public class ServidorSocketsStream {
             InputStream is = newSocket.getInputStream();
             OutputStream os = newSocket.getOutputStream();
 
-            byte[] mensaje = new byte[25];
-            is.read(mensaje);
-
-            System.out.println("Mensaje recibido: " + new String(mensaje));
+            for (int i = 0; i <= 3; i++) {
+                byte[] mensaje = new byte[25];
+                is.read(mensaje);
+                System.out.println("Mensaje recibido: " + new String(mensaje));
+                System.out.println("Enviando mensaje " + i);
+                String mensajeEnviado = "Mensaje desde el servidor";
+                os.write(mensajeEnviado.getBytes());
+                System.out.println("Mensaje enviado");
+            }
 
             System.out.println("Cerrando el nuevo socket");
 
