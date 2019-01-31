@@ -21,18 +21,21 @@ public class ClienteSocketsStream {
             Socket clienteSocket = new Socket();
             System.out.println("Estableciendo la conexi�n");
 
-            InetSocketAddress addr = new InetSocketAddress("locahost", 5555);
+            InetSocketAddress addr = new InetSocketAddress("locahost", 666);
             clienteSocket.connect(addr);
 
             InputStream is = clienteSocket.getInputStream();
             OutputStream os = clienteSocket.getOutputStream();
-
-            System.out.println("Enviando mensaje");
-
-            String mensaje = "mensaje desde el cliente";
-            os.write(mensaje.getBytes());
-
-            System.out.println("Mensaje enviado");
+            for (int i = 0; i <= 3; i++) {
+                System.out.println("Enviando mensaje " + i);
+                String mensajeEnviado = "Mensaje desde el cliente";
+                os.write(mensajeEnviado.getBytes());
+                System.out.println("Mensaje enviado");
+                byte[] mensajeRecibido = new byte[25];
+                is.read(mensajeRecibido);
+                System.out.println("Mensaje recibido: " + new String(mensajeRecibido));
+            }
+            
 
             System.out.println("Cerrando el socket cliente");
 
