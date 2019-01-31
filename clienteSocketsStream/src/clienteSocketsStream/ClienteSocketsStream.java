@@ -16,6 +16,7 @@ public class ClienteSocketsStream {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        boolean recibido = false;
         try {
             System.out.println("Creando socket cliente");
             Socket clienteSocket = new Socket();
@@ -25,17 +26,23 @@ public class ClienteSocketsStream {
             clienteSocket.connect(addr);
 
             InputStream is = clienteSocket.getInputStream();
-            OutputStream os = clienteSocket.getOutputStream();
-            for (int i = 0; i <= 3; i++) {
-                System.out.println("Enviando mensaje " + i);
-                String mensajeEnviado = "Mensaje desde el cliente";
-                os.write(mensajeEnviado.getBytes());
-                System.out.println("Mensaje enviado");
-                byte[] mensajeRecibido = new byte[25];
-                is.read(mensajeRecibido);
-                System.out.println("Mensaje recibido: " + new String(mensajeRecibido));
+            OutputStream output = clienteSocket.getOutputStream();
+            String mensaje = "1 8 4 6 3";
+            output.write(mensaje.getBytes());
+
+            recibido = true;
+            while (recibido == true) {
+                InputStream input = clienteSocket.getInputStream();
+                System.out.println("Conexión recibida");
+
+                byte[] mensajeRe = new byte[20];
+                int leer = input.read(mensajeRe);
+                System.out.println(new String(mensajeRe));
+
+                if (leer == -1) {
+                    recibido = false;
+                }
             }
-            
 
             System.out.println("Cerrando el socket cliente");
 
