@@ -34,17 +34,27 @@ public class ServidorSocketsStream {
             System.out.println("Conexi�n recibida");
 
             InputStream is = newSocket.getInputStream();
-            OutputStream os = newSocket.getOutputStream();
+            byte[] mensajeRe = new byte[20];
+            int leer = is.read(mensajeRe);
 
-            for (int i = 0; i <= 3; i++) {
-                byte[] mensaje = new byte[25];
-                is.read(mensaje);
-                System.out.println("Mensaje recibido: " + new String(mensaje));
-                System.out.println("Enviando mensaje " + i);
-                String mensajeEnviado = "Mensaje desde el servidor";
-                os.write(mensajeEnviado.getBytes());
-                System.out.println("Mensaje enviado");
+            //Mostramos el mensaje
+            System.out.println("Cadena recibida: " + new String(mensajeRe));
+
+            String cadrecibida = new String(mensajeRe);
+            String[] cadena = cadrecibida.split(" ");
+            int suma = 0;
+
+            for (int i = 0; i < cadena.length - 1; i++) {
+                String nu = cadena[i];
+                int num = Integer.valueOf(nu);
+                suma = suma + num;
             }
+            System.out.println("La suma es : " + String.valueOf(suma));
+
+            OutputStream output = newSocket.getOutputStream();
+            String mensaje = "La suma es : " + suma;
+            output.write(mensaje.getBytes());
+            System.out.println("Mensaje enviado");
 
             System.out.println("Cerrando el nuevo socket");
 
