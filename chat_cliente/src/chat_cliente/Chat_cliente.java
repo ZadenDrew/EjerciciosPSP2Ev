@@ -1,8 +1,7 @@
 package chat_cliente;
 
 import java.io.InputStream;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+
 
 /**
  *
@@ -24,7 +23,12 @@ class RecibirMensaje extends Thread {
 
     InputStream is;
     Chat chat = new Chat();
-
+/**
+ * 
+ * @param is 
+ */
+    
+   
     public RecibirMensaje(InputStream is) {
         this.is = is;
     }

@@ -8,19 +8,31 @@ import javax.swing.JTextField;
  * @author andrea
  */
 public class Chat extends javax.swing.JFrame {
-
+/**
+ * 
+ * @return campoChat
+ */
     public JTextArea getCampoChat() {
         return campoChat;
     }
-
+/**
+ * 
+ * @param campoChat 
+ */
     public void setCampoChat(JTextArea campoChat) {
         this.campoChat = campoChat;
     }
-
+/**
+ * 
+ * @return campoTexto
+ */
     public JTextField getCampoTexto() {
         return campoTexto;
     }
-
+/**
+ * 
+ * @param campoTexto 
+ */
     public void setCampoTexto(JTextField campoTexto) {
         this.campoTexto = campoTexto;
     }
@@ -32,6 +44,7 @@ public class Chat extends javax.swing.JFrame {
     /**
      * Creates new form Chat
      */
+   
     public Chat() {
         initComponents();
         met.conectar(ip, porto);

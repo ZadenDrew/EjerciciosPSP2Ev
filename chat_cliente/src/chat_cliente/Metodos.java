@@ -19,7 +19,11 @@ public class Metodos {
     public static Socket clienteSocket;
     OutputStream os;
     InputStream is;
-
+/**
+ * 
+ * @param ip
+ * @param porto 
+ */
     public void conectar(String ip, int porto) {
         try {
 
@@ -40,7 +44,11 @@ public class Metodos {
         }
 
     }
-
+/**
+ * 
+ * @param nick
+ * @param mensaje 
+ */
     public void enviarMens(String nick, String mensaje) {
         try {
             //crearConexion(puerto);
@@ -52,7 +60,11 @@ public class Metodos {
             System.out.println("Error: " + ex);
         }
     }
-
+/**
+ * 
+ * @param txtMensaje
+ * @param campoChat 
+ */
     public void recibirMensaje(JTextField txtMensaje, JTextArea campoChat) {
         try {
             byte[] mensajeRecibido = new byte[120];
